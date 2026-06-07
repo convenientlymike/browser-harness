@@ -1,0 +1,6 @@
+{"kind":"pageerror","ts":1717718400000,"message":"Uncaught ReferenceError: __app is not defined","stack":"ReferenceError: __app is not defined\n    at main.js:42:5\n    at HTMLDocument.<anonymous> (main.js:1:1)"}
+{"kind":"console_error","ts":1717718401000,"text":"Failed to load resource: net::ERR_BLOCKED_BY_CLIENT","location":"https://example.com/analytics.js:1"}
+{"kind":"console_warning","ts":1717718402000,"text":"[Deprecation] Synchronous XMLHttpRequest on the main thread is deprecated","location":"https://example.com/legacy.js:88"}
+{"kind":"requestfailed","ts":1717718403000,"url":"https://fonts.googleapis.com/css2?family=Inter","method":"GET","failure":"net::ERR_INTERNET_DISCONNECTED"}
+{"kind":"responseerror","ts":1717718404000,"url":"https://example.com/api/user","method":"GET","status":401,"statusText":"Unauthorized"}
+{"kind":"responseerror","ts":1717718405000,"url":"https://example.com/api/data","method":"POST","status":500,"statusText":"Internal Server Error"}
