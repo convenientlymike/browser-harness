@@ -8,11 +8,12 @@ on:
 
 jobs:
   test:
-    name: Typecheck + Unit tests
-    runs-on: ubuntu-latest
+    name: Typecheck + Unit tests (${{ matrix.os }}, Node ${{ matrix.node-version }})
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: ["20", "22"]
 
     steps:
@@ -32,3 +33,6 @@ jobs:
 
       - name: Run tests (no browser, no network)
         run: npm test
+
+      - name: Build (exercises postbuild on every OS)
+        run: npm run build

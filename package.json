@@ -15,10 +15,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "postbuild": "chmod +x dist/cli.js",
+    "postbuild": "node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
     "start": "node dist/cli.js",
     "test": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit && node --import tsx/esm --test tests/summary.test.ts",
-    "test:run": "node --test tests/summary.test.ts",
+    "test:run": "node --import tsx/esm --test tests/summary.test.ts",
     "lint": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },

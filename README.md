@@ -40,6 +40,8 @@ is trivially queryable with `jq` and ingestible by any log pipeline.
 npm install          # installs playwright + typescript + tsx
 ```
 
+Works on Windows, macOS, and Linux (Node 20+).
+
 > Playwright ships a bundled Chromium, so `harness capture` works out of the box.
 > See [Chrome for Testing](#chrome-for-testing) below if you want to pin a specific binary.
 
@@ -172,7 +174,8 @@ If you want to pin a specific Chrome for Testing binary (the same one used by
 
 ```bash
 # Option A — env var (takes highest priority)
-export CHROME_FOR_TESTING_BIN="/path/to/Google Chrome for Testing"
+export CHROME_FOR_TESTING_BIN="/path/to/Google Chrome for Testing"   # macOS/Linux
+$env:CHROME_FOR_TESTING_BIN = "C:\path\to\chrome.exe"                # Windows PowerShell
 node dist/cli.js capture ...
 
 # Option B — install via Playwright (auto-discovered from the cache)
@@ -183,11 +186,14 @@ node dist/cli.js capture ...
 The resolution order in `src/capture.ts`:
 
 1. `$CHROME_FOR_TESTING_BIN` env var
-2. Playwright's macOS/Linux cache (`~/Library/Caches/ms-playwright/chromium-*`)
+2. Playwright's browser cache — `$PLAYWRIGHT_BROWSERS_PATH` if set, otherwise:
+   - Windows: `%LOCALAPPDATA%\ms-playwright\chromium-*`
+   - macOS: `~/Library/Caches/ms-playwright/chromium-*`
+   - Linux: `~/.cache/ms-playwright/chromium-*`
 3. Playwright's bundled browser (automatic fallback — always works)
 
-The browser always launches **headed** (`--headless` inverts this), so you can
-watch events arrive in real time.
+The browser launches **headed** by default so you can watch events arrive in
+real time; pass `--headless` to hide the window.
 
 ---
 
